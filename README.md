@@ -127,7 +127,8 @@ học phí = giờ × đơn giá × (1 - giảm giá%) + phí nền tảng
 - Breakpoint `720px`: menu chuyển sang dạng toggle, nav xếp dọc, card giảm padding.
 - Breakpoint `600px`: form tìm kiếm xếp dọc, lưới cố vấn 1 cột, lịch hẹn xếp dọc.
 - Trạng thái tương tác: `hover`, `focus-within`, `active`, `disabled`, toast success/error.
-- Hỗ trợ bàn phím: `Esc` đóng modal, nút xác nhận được `focus()` khi mở modal.
+- Hỗ trợ bàn phím: `Esc` đóng modal, nút xác nhận được `focus()` khi mở modal, `:focus-visible` có ring rõ ràng.
+- Accessibility: heading theo thứ tự `h1 → h2`, `aria-label` cho input/select, tôn trọng `prefers-reduced-motion`, vùng bấm tối thiểu 44px.
 
 ---
 
@@ -158,3 +159,4 @@ Minh chứng tư duy điều khiển AI tại [`docs/PROMPTS.md`](docs/PROMPTS.m
 - [ ] Đặt lịch → xuất hiện trong `index3.html` sau khi reload.
 - [ ] Hủy lịch → trạng thái chuyển thành “Đã hủy”, tổng học phí cập nhật lại.
 - [ ] Resize xuống 375px: menu, thẻ, lịch hẹn đều hiển thị tốt.
+- [ ] Lighthouse: Accessibility 1.0 / Best Practices 1.0 (SEO trừ robots.txt trên môi trường preview).

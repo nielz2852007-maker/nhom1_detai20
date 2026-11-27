@@ -58,7 +58,7 @@
         (cancellable ? '' : ' is-cancelled') + '">' +
         '<div class="avatar">' + utils.escapeHtml(initialsOf(appointment.mentorId)) + '</div>' +
         '<div class="appointment-info">' +
-          '<h3>' + utils.escapeHtml(appointment.mentorName) + '</h3>' +
+          '<h2>' + utils.escapeHtml(appointment.mentorName) + '</h2>' +
           '<div class="appointment-meta">' +
             '<span>🕒 ' + utils.escapeHtml(utils.formatDateTime(appointment.start)) + '</span>' +
             '<span>⏱ ' + Number(appointment.durationHours).toFixed(1) + ' giờ</span>' +

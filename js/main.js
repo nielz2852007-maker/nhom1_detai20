@@ -38,7 +38,7 @@
           '<div class="mentor-card-top">',
             '<div class="avatar">' + utils.escapeHtml(mentor.initials) + '</div>',
             '<div>',
-              '<h3>' + utils.escapeHtml(mentor.name) + '</h3>',
+              '<h2>' + utils.escapeHtml(mentor.name) + '</h2>',
               '<p class="rating">' + stars + ' ' + mentor.rating.toFixed(1) + '/5</p>',
             '</div>',
           '</div>',
