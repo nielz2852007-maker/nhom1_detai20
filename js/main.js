@@ -26,7 +26,7 @@
     });
     skillFilter.innerHTML = '<option value="">Tất cả kỹ năng</option>' + options.join('');
 
-    function cardTemplate(mentor) {
+    function cardTemplate(mentor, index) {
       var gpa = utils.calculateGPA(mentor.gpaCourses);
       var stars = new Array(Math.round(mentor.rating) + 1).join('★');
       var tags = mentor.skills.map(function (skill) {
@@ -34,7 +34,8 @@
       }).join('');
 
       return [
-        '<article class="mentor-card">',
+        '<article class="mentor-card" data-aos="fade-up" data-aos-delay="' +
+          Math.min(index || 0, 5) * 80 + '">',
           '<div class="mentor-card-top">',
             '<div class="avatar">' + utils.escapeHtml(mentor.initials) + '</div>',
             '<div>',
@@ -73,6 +74,8 @@
           'Thử đổi từ khóa hoặc kỹ năng nhé.</div>';
 
       list.setAttribute('aria-label', 'Danh sách ' + filtered.length + ' cố vấn');
+
+      if (NS.effects) NS.effects.refresh();
     }
 
     /* Event delegation: nút được tạo lại sau mỗi lần render vẫn hoạt động. */

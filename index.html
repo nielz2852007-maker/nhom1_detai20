@@ -7,7 +7,8 @@
   <title>MentorConnect - Trang chủ</title>
   <meta name="description" content="Tìm cố vấn phù hợp theo kỹ năng, xem lịch rảnh và đặt buổi trao đổi nhanh chóng cùng MentorConnect.">
 
-  <!-- Nạp stylesheet chung trước, sau đó nạp stylesheet riêng cho trang chủ -->
+  <!-- AOS (hiệu ứng cuộn) nạp trước để CSS riêng có thể ghi đè nếu cần -->
+  <link rel="stylesheet" href="vendor/aos/aos.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
@@ -28,11 +29,11 @@
   <!-- Khu vực banner tìm kiếm và lọc cố vấn -->
   <section class="banner">
     <div class="container">
-      <h1>Tìm cố vấn phù hợp với bạn</h1>
-      <p>Khám phá danh sách cố vấn và nhóm học theo kỹ năng, xem lịch rảnh và đặt buổi trao đổi nhanh chóng.</p>
+      <h1 data-aos="fade-up">Tìm cố vấn phù hợp với bạn</h1>
+      <p data-aos="fade-up" data-aos-delay="100">Khám phá danh sách cố vấn và nhóm học theo kỹ năng, xem lịch rảnh và đặt buổi trao đổi nhanh chóng.</p>
 
       <!-- Thanh tìm kiếm theo từ khóa và lọc theo kỹ năng -->
-      <div class="search-bar">
+      <div class="search-bar" data-aos="fade-up" data-aos-delay="200">
         <input type="text" id="search-input" aria-label="Tìm theo tên cố vấn, chuyên môn hoặc từ khóa" placeholder="Tìm theo tên cố vấn, chuyên môn hoặc từ khóa...">
         <select id="skill-filter" aria-label="Lọc theo kỹ năng">
           <option value="">Tất cả kỹ năng</option>
@@ -52,8 +53,10 @@
   </footer>
 
   <!-- Nạp các tệp JavaScript theo đúng thứ tự -->
+  <script src="vendor/aos/aos.js"></script>
   <script src="js/data.js"></script>
   <script src="js/common.js"></script>
+  <script src="js/effects.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

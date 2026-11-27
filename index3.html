@@ -7,7 +7,8 @@
   <title>MentorConnect - Lịch hẹn</title>
   <meta name="description" content="Quản lý các lịch hẹn sắp tới, theo dõi học phí dự kiến và hủy lịch dễ dàng.">
 
-  <!-- Nạp stylesheet chung trước, sau đó nạp stylesheet riêng cho trang lịch hẹn -->
+  <!-- AOS (hiệu ứng cuộn) nạp trước để CSS riêng có thể ghi đè nếu cần -->
+  <link rel="stylesheet" href="vendor/aos/aos.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/appointments.css">
 </head>
@@ -27,9 +28,9 @@
 
   <!-- Nội dung chính: thống kê và danh sách lịch hẹn do JavaScript render -->
   <main class="container">
-    <h1>Lịch hẹn sắp tới</h1>
-    <p class="appointment-count" id="appointment-count"></p>
-    <div class="appointment-list" id="appointment-list"></div>
+    <h1 data-aos="fade-up">Lịch hẹn sắp tới</h1>
+    <p class="appointment-count" id="appointment-count" data-aos="fade-up" data-aos-delay="100"></p>
+    <div class="appointment-list" id="appointment-list" data-aos="fade-up" data-aos-delay="200"></div>
   </main>
 
   <!-- Phần chân trang -->
@@ -38,8 +39,10 @@
   </footer>
 
   <!-- Nạp các tệp JavaScript theo đúng thứ tự -->
+  <script src="vendor/aos/aos.js"></script>
   <script src="js/data.js"></script>
   <script src="js/common.js"></script>
+  <script src="js/effects.js"></script>
   <script src="js/appointments.js"></script>
 </body>
 </html>

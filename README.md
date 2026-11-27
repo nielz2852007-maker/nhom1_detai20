@@ -20,7 +20,7 @@ Cổng kết nối **Cố vấn & Học nhóm** – dự án web tĩnh (HTML/CSS
 - Menu mobile toggle, toast thông báo, modal bấm nền/Esc để đóng.
 - Dữ liệu lưu trong `localStorage`, có seed mẫu và xử lý an toàn khi trình duyệt chặn storage.
 - Mọi nội dung từ localStorage/URL đều được escape trước khi chèn vào DOM.
-- Không dùng thư viện ngoài → không có lỗi dependency, dễ kiểm tra console.
+- Hiệu ứng cuộn dùng **AOS 2.3.4** (`vendor/aos`, MIT) nạp local → không phụ thuộc CDN, vẫn chạy offline.
 
 ---
 
@@ -41,7 +41,12 @@ Cổng kết nối **Cố vấn & Học nhóm** – dự án web tĩnh (HTML/CSS
 │   ├── common.js            # Logic GPA/học phí, storage, format, delegate, toast, dialog
 │   ├── main.js              # Trang chủ: lọc + render danh sách
 │   ├── profile.js           # Trang hồ sơ: chọn slot + đặt lịch
-│   └── appointments.js      # Trang lịch hẹn: lọc + hủy lịch
+│   ├── appointments.js      # Trang lịch hẹn: lọc + hủy lịch
+│   └── effects.js           # Khởi tạo AOS + refresh sau mỗi lần render
+├── assets/
+│   └── illustrations/       # 3 SVG minh họa banner/hồ sơ/lịch hẹn
+├── vendor/
+│   └── aos/                 # AOS 2.3.4 (aos.css, aos.js, LICENSE)
 └── docs/
     ├── PROMPTS.md           # Minh chứng điều khiển AI bằng prompt logic
     └── AGILE.md             # Quy trình Kanban, convention commit, checklist
@@ -50,9 +55,11 @@ Cổng kết nối **Cố vấn & Học nhóm** – dự án web tĩnh (HTML/CSS
 ### Thứ tự nạp script (bắt buộc)
 
 ```html
-<script src="js/data.js"></script>       <!-- 1. Dữ liệu -->
-<script src="js/common.js"></script>     <!-- 2. Tiện ích + logic dùng chung -->
-<script src="js/main.js"></script>       <!-- 3. Page-specific -->
+<script src="vendor/aos/aos.js"></script> <!-- 0. Thư viện hiệu ứng cuộn -->
+<script src="js/data.js"></script>        <!-- 1. Dữ liệu -->
+<script src="js/common.js"></script>      <!-- 2. Tiện ích + logic dùng chung -->
+<script src="js/effects.js"></script>     <!-- 3. Cấu hình AOS -->
+<script src="js/main.js"></script>        <!-- 4. Page-specific -->
 ```
 
 Cả 3 module dùng chung namespace `window.MentorConnect`, tránh ô nhiễm global scope.
@@ -128,6 +135,7 @@ học phí = giờ × đơn giá × (1 - giảm giá%) + phí nền tảng
 - Breakpoint `600px`: form tìm kiếm xếp dọc, lưới cố vấn 1 cột, lịch hẹn xếp dọc.
 - Trạng thái tương tác: `hover`, `focus-within`, `active`, `disabled`, toast success/error.
 - Hỗ trợ bàn phím: `Esc` đóng modal, nút xác nhận được `focus()` khi mở modal.
+- Hiệu ứng cuộn AOS: `fade-up` có stagger cho banner, thẻ cố vấn, slot, đánh giá và lịch hẹn; `once: true`, tôn trọng `prefers-reduced-motion`, tự refresh khi JS render lại danh sách.
 
 ---
 

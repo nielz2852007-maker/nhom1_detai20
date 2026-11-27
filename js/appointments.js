@@ -50,12 +50,13 @@
       return 'status';
     }
 
-    function cardTemplate(appointment) {
+    function cardTemplate(appointment, index) {
       var label = STATUS_LABELS[appointment.status] || appointment.status;
       var cancellable = appointment.status !== 'cancelled';
 
       return '<article class="appointment-card' +
-        (cancellable ? '' : ' is-cancelled') + '">' +
+        (cancellable ? '' : ' is-cancelled') + '" data-aos="fade-up" data-aos-delay="' +
+        Math.min(index || 0, 5) * 80 + '">' +
         '<div class="avatar">' + utils.escapeHtml(initialsOf(appointment.mentorId)) + '</div>' +
         '<div class="appointment-info">' +
           '<h2>' + utils.escapeHtml(appointment.mentorName) + '</h2>' +
@@ -105,6 +106,8 @@
       Array.prototype.forEach.call(toolbar.querySelectorAll('[data-filter]'), function (button) {
         button.classList.toggle('active', button.getAttribute('data-filter') === filterMode);
       });
+
+      if (NS.effects) NS.effects.refresh();
     }
 
     utils.delegate(toolbar, 'click', '[data-filter]', function (event, button) {

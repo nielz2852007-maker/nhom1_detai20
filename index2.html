@@ -7,7 +7,8 @@
   <title>MentorConnect - Hồ sơ cố vấn</title>
   <meta name="description" content="Xem hồ sơ cố vấn, GPA, học phí, lịch rảnh và đánh giá trước khi đặt buổi trao đổi.">
 
-  <!-- Nạp stylesheet chung trước, sau đó nạp stylesheet riêng cho trang hồ sơ -->
+  <!-- AOS (hiệu ứng cuộn) nạp trước để CSS riêng có thể ghi đè nếu cần -->
+  <link rel="stylesheet" href="vendor/aos/aos.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/profile.css">
 </head>
@@ -28,7 +29,7 @@
   <!-- Nội dung chính: hồ sơ cố vấn, lịch rảnh và đánh giá do JavaScript đổ dữ liệu -->
   <main class="container" id="profile-root">
     <!-- Thông tin tổng quan của cố vấn -->
-    <section class="card profile-head">
+    <section class="card profile-head" data-aos="fade-up">
       <div class="avatar avatar-lg" id="mentor-avatar"></div>
       <div>
         <h1 id="mentor-name"></h1>
@@ -39,14 +40,14 @@
     </section>
 
     <!-- Danh sách khung giờ rảnh và nút đặt lịch -->
-    <section class="card section">
+    <section class="card section" data-aos="fade-up" data-aos-delay="100">
       <h2>Lịch rảnh</h2>
       <div class="slot-list" id="slot-list"></div>
       <button class="btn btn-primary" id="book-btn">Đặt lịch hẹn</button>
     </section>
 
     <!-- Danh sách đánh giá từ người học -->
-    <section class="card section">
+    <section class="card section" data-aos="fade-up" data-aos-delay="200">
       <h2>Đánh giá</h2>
       <div id="review-list"></div>
     </section>
@@ -70,8 +71,10 @@
   </footer>
 
   <!-- Nạp các tệp JavaScript theo đúng thứ tự -->
+  <script src="vendor/aos/aos.js"></script>
   <script src="js/data.js"></script>
   <script src="js/common.js"></script>
+  <script src="js/effects.js"></script>
   <script src="js/profile.js"></script>
 </body>
 </html>

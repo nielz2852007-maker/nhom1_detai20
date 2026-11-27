@@ -52,7 +52,7 @@
     var head = root.querySelector('.profile-head');
     if (head && !document.getElementById('stat-gpa')) {
       head.insertAdjacentHTML('afterend',
-        '<section class="card section profile-stats">' +
+        '<section class="card section profile-stats" data-aos="fade-up" data-aos-delay="100">' +
           '<h2>Học phí &amp; kết quả</h2>' +
           '<div class="stats-grid">' +
             '<div><span class="stats-label">GPA cố vấn</span>' +
@@ -73,10 +73,11 @@
     var sortedSlots = mentor.slots.slice().sort(function (a, b) {
       return new Date(a.start) - new Date(b.start);
     });
-    slotList.innerHTML = sortedSlots.map(function (slot) {
+    slotList.innerHTML = sortedSlots.map(function (slot, index) {
       var booked = utils.isSlotBooked(slot.id);
       return '<button type="button" class="slot' + (booked ? ' booked' : '') + '"' +
         ' data-slot-id="' + utils.escapeHtml(slot.id) + '"' +
+        ' data-aos="fade-up" data-aos-delay="' + Math.min(index, 5) * 60 + '"' +
         (booked ? ' disabled' : '') + '>' +
         utils.escapeHtml(utils.formatDateTime(slot.start)) +
         ' · ' + slot.durationHours + 'h' + (booked ? ' (Đã đặt)' : '') +
@@ -84,9 +85,10 @@
     }).join('') || '<p class="empty-note">Hiện chưa có khung giờ rảnh.</p>';
 
     /* ---------- Render đánh giá ---------- */
-    reviewList.innerHTML = mentor.reviews.map(function (review) {
+    reviewList.innerHTML = mentor.reviews.map(function (review, index) {
       var stars = new Array(Math.round(review.rating) + 1).join('★');
-      return '<article class="review">' +
+      return '<article class="review" data-aos="fade-up" data-aos-delay="' +
+        Math.min(index, 5) * 60 + '">' +
         '<div class="review-header">' +
           '<span class="review-author">' + utils.escapeHtml(review.author) + '</span>' +
           '<span class="review-rating">' + stars + ' ' + review.rating.toFixed(1) + '</span>' +
@@ -195,6 +197,7 @@
     });
 
     updateSelection();
+    if (NS.effects) NS.effects.refresh();
   }
 
   utils.ready(init);
