@@ -39,9 +39,9 @@
     }).join('');
     list.parentNode.insertBefore(toolbar, list);
 
-    function initialsOf(mentorId) {
-      var mentor = data.mentors.find(function (item) { return item.id === mentorId; });
-      return mentor ? mentor.initials : 'MC';
+    function mentorOf(mentorId) {
+      return data.mentors.find(function (item) { return item.id === mentorId; }) ||
+        { initials: 'MC' };
     }
 
     function statusClass(status) {
@@ -57,7 +57,7 @@
       return '<article class="appointment-card' +
         (cancellable ? '' : ' is-cancelled') + '" data-aos="fade-up" data-aos-delay="' +
         Math.min(index || 0, 5) * 80 + '">' +
-        '<div class="avatar">' + utils.escapeHtml(initialsOf(appointment.mentorId)) + '</div>' +
+        utils.avatarHTML(mentorOf(appointment.mentorId)) +
         '<div class="appointment-info">' +
           '<h2>' + utils.escapeHtml(appointment.mentorName) + '</h2>' +
           '<div class="appointment-meta">' +

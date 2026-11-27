@@ -1,0 +1,6 @@
+# Ảnh gốc do thành viên thêm vào; bản dùng đã copy sang assets/avatars/
+ảnh người/
+
+# Các thư mục hay sinh ra khi chạy công cụ
+node_modules/
+.DS_Store

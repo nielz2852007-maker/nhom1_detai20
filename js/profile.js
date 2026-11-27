@@ -40,7 +40,12 @@
     var selectedSlotId = null;
 
     /* ---------- Render thông tin tổng quan ---------- */
-    avatar.textContent = mentor.initials;
+    if (mentor.avatar) {
+      avatar.innerHTML = '<img src="' + utils.escapeHtml(mentor.avatar) +
+        '" alt="Ảnh của ' + utils.escapeHtml(mentor.name) + '">';
+    } else {
+      avatar.textContent = mentor.initials;
+    }
     name.textContent = mentor.name;
     rating.textContent = '★ ' + mentor.rating.toFixed(1) + '/5 · GPA ' + gpa.toFixed(2) + '/4.0';
     bio.textContent = mentor.bio;

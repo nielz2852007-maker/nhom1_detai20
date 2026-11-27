@@ -21,6 +21,7 @@ Cổng kết nối **Cố vấn & Học nhóm** – dự án web tĩnh (HTML/CSS
 - Dữ liệu lưu trong `localStorage`, có seed mẫu và xử lý an toàn khi trình duyệt chặn storage.
 - Mọi nội dung từ localStorage/URL đều được escape trước khi chèn vào DOM.
 - Hiệu ứng cuộn dùng **AOS 2.3.4** (`vendor/aos`, MIT) nạp local → không phụ thuộc CDN, vẫn chạy offline.
+- Avatar cố vấn dùng ảnh local trong `assets/avatars/`; nếu thiếu ảnh thì tự fallback về chữ cái initials.
 
 ---
 
@@ -44,7 +45,8 @@ Cổng kết nối **Cố vấn & Học nhóm** – dự án web tĩnh (HTML/CSS
 │   ├── appointments.js      # Trang lịch hẹn: lọc + hủy lịch
 │   └── effects.js           # Khởi tạo AOS + refresh sau mỗi lần render
 ├── assets/
-│   └── illustrations/       # 3 SVG minh họa banner/hồ sơ/lịch hẹn
+│   ├── illustrations/       # 3 SVG minh họa banner/hồ sơ/lịch hẹn
+│   └── avatars/             # 6 ảnh đại diện cố vấn (mentor-m1..m6.jfif)
 ├── vendor/
 │   └── aos/                 # AOS 2.3.4 (aos.css, aos.js, LICENSE)
 └── docs/

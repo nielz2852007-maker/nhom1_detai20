@@ -37,7 +37,7 @@
         '<article class="mentor-card" data-aos="fade-up" data-aos-delay="' +
           Math.min(index || 0, 5) * 80 + '">',
           '<div class="mentor-card-top">',
-            '<div class="avatar">' + utils.escapeHtml(mentor.initials) + '</div>',
+            utils.avatarHTML(mentor),
             '<div>',
               '<h2>' + utils.escapeHtml(mentor.name) + '</h2>',
               '<p class="rating">' + stars + ' ' + mentor.rating.toFixed(1) + '/5</p>',

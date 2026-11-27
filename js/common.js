@@ -78,6 +78,21 @@
       .replace(/[&<>"']/g, function (ch) { return HTML_ESCAPE[ch]; });
   }
 
+  /** Avatar dùng ảnh khi có, nếu không thì fallback về chữ cái tên. */
+  function avatarHTML(person, extraClass) {
+    var personData = person || {};
+    var className = 'avatar' + (extraClass ? ' ' + extraClass : '');
+    if (!personData.avatar) {
+      return '<div class="' + className + '">' +
+        escapeHtml(personData.initials || 'MC') + '</div>';
+    }
+    var label = personData.name ? 'Ảnh của ' + personData.name : 'Ảnh đại diện';
+    return '<div class="' + className + '">' +
+      '<img src="' + escapeHtml(personData.avatar) + '" alt="' + escapeHtml(label) +
+      '" loading="lazy" width="56" height="56">' +
+      '</div>';
+  }
+
   function formatCurrency(value) {
     return new Intl.NumberFormat('vi-VN', {
       style: 'currency', currency: 'VND', maximumFractionDigits: 0
@@ -284,6 +299,7 @@
     calculateGPA: calculateGPA,
     calculateTuition: calculateTuition,
     escapeHtml: escapeHtml,
+    avatarHTML: avatarHTML,
     formatCurrency: formatCurrency,
     formatDateTime: formatDateTime,
     formatDate: formatDate,
