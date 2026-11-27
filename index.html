@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <!-- Khai báo bảng mã tiếng Việt và hiển thị responsive trên điện thoại -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MentorConnect - Trang chủ</title>
+
+  <!-- Nạp stylesheet chung trước, sau đó nạp stylesheet riêng cho trang chủ -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <!-- Phần đầu trang và thanh điều hướng -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">MentorConnect</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Bật tắt menu">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="index3.html">Lịch hẹn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Khu vực banner tìm kiếm và lọc cố vấn -->
+  <section class="banner">
+    <div class="container">
+      <h1>Tìm cố vấn phù hợp với bạn</h1>
+      <p>Khám phá danh sách cố vấn và nhóm học theo kỹ năng, xem lịch rảnh và đặt buổi trao đổi nhanh chóng.</p>
+
+      <!-- Thanh tìm kiếm theo từ khóa và lọc theo kỹ năng -->
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm theo tên cố vấn, chuyên môn hoặc từ khóa...">
+        <select id="skill-filter">
+          <option value="">Tất cả kỹ năng</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nội dung chính: vùng chứa danh sách thẻ cố vấn do JavaScript render -->
+  <main class="container">
+    <div id="mentor-list" class="mentor-list"></div>
+  </main>
+
+  <!-- Phần chân trang -->
+  <footer class="site-footer">
+    <div class="container">© 2026 MentorConnect. Cổng kết nối Cố vấn &amp; Học nhóm.</div>
+  </footer>
+
+  <!-- Nạp các tệp JavaScript theo đúng thứ tự -->
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

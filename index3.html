@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <!-- Khai báo tiếng Việt và hiển thị responsive trên điện thoại -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MentorConnect - Lịch hẹn</title>
+
+  <!-- Nạp stylesheet chung trước, sau đó nạp stylesheet riêng cho trang lịch hẹn -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/appointments.css">
+</head>
+<body>
+  <!-- Phần đầu trang và thanh điều hướng -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">MentorConnect</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Bật tắt menu">☰</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="index3.html">Lịch hẹn</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Nội dung chính: thống kê và danh sách lịch hẹn do JavaScript render -->
+  <main class="container">
+    <h1>Lịch hẹn sắp tới</h1>
+    <p class="appointment-count" id="appointment-count"></p>
+    <div class="appointment-list" id="appointment-list"></div>
+  </main>
+
+  <!-- Phần chân trang -->
+  <footer class="site-footer">
+    <div class="container">© 2026 MentorConnect. Cổng kết nối Cố vấn &amp; Học nhóm.</div>
+  </footer>
+
+  <!-- Nạp các tệp JavaScript theo đúng thứ tự -->
+  <script src="js/data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/appointments.js"></script>
+</body>
+</html>
