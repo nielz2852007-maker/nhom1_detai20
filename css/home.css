@@ -1,0 +1,162 @@
+/* ==========================================================
+   home.css - Trang chủ: banner, tìm kiếm, danh sách cố vấn
+   ========================================================== */
+
+.banner {
+  padding: 56px 0 46px;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.12), transparent 35%),
+    linear-gradient(135deg, #eef2ff 0%, #f0f9ff 55%, #ecfeff 100%);
+}
+
+.banner h1 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.banner p {
+  max-width: 720px;
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+/* Thanh tìm kiếm + lọc kỹ năng */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 760px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-bar:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.search-bar input,
+.search-bar select {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  color: var(--text);
+  outline: none;
+}
+
+.search-bar input {
+  flex: 1 1 320px;
+}
+
+.search-bar input::placeholder {
+  color: #9ca3af;
+}
+
+.search-bar select {
+  flex: 0 1 200px;
+  min-width: 160px;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+/* Lưới thẻ cố vấn do JS render */
+.mentor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  align-items: start;
+  margin-top: 32px;
+  padding-bottom: 48px;
+}
+
+.mentor-list > * {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mentor-list > *:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.mentor-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mentor-list h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.mentor-list p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.mentor-list .mentor-title {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.mentor-list .mentor-gpa {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.mentor-list .rating {
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.mentor-list .tags {
+  margin-top: auto;
+}
+
+.mentor-list .btn {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 48px 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .banner {
+    padding: 40px 0 32px;
+  }
+
+  .search-bar input,
+  .search-bar select {
+    flex: 1 1 100%;
+  }
+
+  .mentor-list {
+    grid-template-columns: 1fr;
+  }
+}
