@@ -2,6 +2,23 @@
    appointments.css - Trang lịch hẹn: thống kê, lọc, trạng thái
    ========================================================== */
 
+main.container {
+  position: relative;
+}
+
+/* Minh họa lịch hẹn ở góc phải tiêu đề, không làm đổi bố cục. */
+main.container::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 0;
+  width: clamp(110px, 17vw, 168px);
+  aspect-ratio: 1;
+  background: url("../assets/illustrations/appointment-illustration.svg") no-repeat center / contain;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 main.container > h1 {
   position: relative;
   display: inline-block;
@@ -241,6 +258,10 @@ main.container > h1::after {
 
 /* ---------- Responsive ---------- */
 @media (max-width: 720px) {
+  main.container::before {
+    display: none;
+  }
+
   .appointment-list > * {
     grid-template-columns: auto minmax(0, 1fr);
   }
