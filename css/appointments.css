@@ -1,19 +1,45 @@
 /* ==========================================================
-   appointments.css - Trang lịch hẹn: thống kê và danh sách lịch
+   appointments.css - Trang lịch hẹn: thống kê, lọc, trạng thái
    ========================================================== */
 
 main.container > h1 {
-  margin: 32px 0 6px;
-  font-size: clamp(1.7rem, 3.5vw, 2.2rem);
-  line-height: 1.25;
+  position: relative;
+  display: inline-block;
+  margin: clamp(24px, 4vw, 36px) 0 6px;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+main.container > h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 56px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
 }
 
 .appointment-count {
-  margin: 0 0 24px;
-  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 24px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--primary-050);
+  color: var(--primary-dark);
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
+.appointment-count::before {
+  content: "📅";
+}
+
+/* ---------- Thanh lọc ---------- */
 .appointment-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -22,7 +48,8 @@ main.container > h1 {
 }
 
 .filter-btn {
-  padding: 7px 14px;
+  min-height: 40px;
+  padding: 8px 16px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: #fff;
@@ -31,50 +58,97 @@ main.container > h1 {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: transform 0.2s var(--ease), background-color 0.2s,
+    color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
+.filter-btn:hover {
+  transform: translateY(-1px);
   border-color: var(--primary);
-  background: #eef2ff;
   color: var(--primary);
 }
 
+.filter-btn.active {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--primary), #6366f1);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
+}
+
+/* ---------- Danh sách lịch hẹn ---------- */
 .appointment-list {
   display: grid;
   gap: 16px;
-  padding-bottom: 48px;
+  padding-bottom: clamp(40px, 6vw, 64px);
 }
 
 .appointment-list > * {
+  position: relative;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 16px;
-  padding: 20px;
+  padding: 20px 22px 20px 26px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
 }
 
+.appointment-list > *::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: var(--success);
+}
+
+.appointment-list > *:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-100);
+  box-shadow: var(--shadow-lg);
+}
+
+/* :has() có mặt trên trình duyệt hiện đại; fallback vẫn dùng màu xanh mặc định. */
+.appointment-list > *:has(.status.pending)::before {
+  background: #f59e0b;
+}
+
+.appointment-card.is-cancelled::before {
+  background: #cbd5e1;
+}
+
+.appointment-info h2,
 .appointment-info h3 {
   margin: 0;
   font-size: 1.1rem;
+  letter-spacing: -0.01em;
 }
 
 .appointment-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 16px;
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 0.9rem;
+  gap: 6px 12px;
+  margin-top: 6px;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+}
+
+.appointment-meta span {
+  padding: 3px 9px;
+  border-radius: 8px;
+  background: rgba(148, 163, 184, 0.16);
 }
 
 .status {
-  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
   border-radius: 999px;
   background: #ecfdf5;
   color: var(--success);
@@ -83,10 +157,24 @@ main.container > h1 {
   white-space: nowrap;
 }
 
+.status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
 .status.pending,
 .status.dang-cho {
   background: #fffbeb;
-  color: #b45309;
+  color: var(--warning);
+}
+
+.status.pending::before,
+.status.dang-cho::before {
+  box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.12);
 }
 
 .status.cancelled,
@@ -95,7 +183,13 @@ main.container > h1 {
   color: var(--danger);
 }
 
+.status.cancelled::before,
+.status.da-huy::before {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
 .appointment-list .btn-danger {
+  min-height: 38px;
   padding: 6px 12px;
   font-size: 0.85rem;
 }
@@ -108,19 +202,93 @@ main.container > h1 {
 }
 
 .appointment-card.is-cancelled {
-  opacity: 0.65;
+  background: #fafafa;
+  border-style: dashed;
 }
 
-@media (max-width: 600px) {
+.appointment-card.is-cancelled .appointment-info h2,
+.appointment-card.is-cancelled .appointment-info h3 {
+  color: var(--muted);
+}
+
+.appointment-list > .empty-state {
+  display: block;
+  padding: 48px 20px !important;
+  border: 1px dashed var(--border) !important;
+  border-radius: var(--radius) !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  box-shadow: none !important;
+  color: var(--muted);
+  text-align: center;
+}
+
+.appointment-list > .empty-state::before {
+  content: "📭";
+  position: static;
+  inset: auto;
+  width: auto;
+  height: auto;
+  margin-bottom: 8px;
+  background: none;
+  font-size: 2rem;
+}
+
+.appointment-list > .empty-state:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
   .appointment-list > * {
-    grid-template-columns: 1fr;
-    justify-items: start;
-    gap: 12px;
+    grid-template-columns: auto minmax(0, 1fr);
   }
 
   .appointment-actions {
-    align-items: flex-start;
+    grid-column: 1 / -1;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 520px) {
+  .appointment-toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .appointment-toolbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .appointment-list > * {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 18px 18px 22px;
+  }
+
+  .appointment-actions {
+    justify-content: flex-start;
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 380px) {
+  .appointment-info h2,
+  .appointment-info h3 {
+    font-size: 1rem;
+  }
+
+  .appointment-meta {
+    gap: 4px 8px;
   }
 }
